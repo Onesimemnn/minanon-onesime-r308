@@ -1,0 +1,11 @@
+# Fichiers générés en jouant
+scores.txt
+notes.txt
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
