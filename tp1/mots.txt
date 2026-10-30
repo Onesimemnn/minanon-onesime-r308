@@ -1,0 +1,17 @@
+# Liste de mots pour le Pendu : un mot par ligne.
+# Les lignes vides et celles qui commencent par # sont ignorées.
+# Accents et majuscules/minuscules acceptés.
+python
+dictionnaire
+fonction
+variable
+boucle
+éléphant
+clavier
+réseau
+ordinateur
+algorithme
+serveur
+routeur
+protocole
+porte-monnaie
