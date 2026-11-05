@@ -1,22 +1,11 @@
-"""
-TP2 - Partie C : jeu de Morpion complet.
-
-Boucle de jeu : les joueurs jouent chacun leur tour, chaque coup est validé
-par la Grille, et la partie s'arrête sur une victoire ou un match nul.
-
-Bonus réalisés : score sur plusieurs parties, mode 2 humains (et IA contre IA).
-"""
-
 from grille import Grille
 from joueurs import JoueurHumain, JoueurIA
 
 
 def jouer_partie(joueur_x, joueur_o, afficher=True):
-    """Joue une partie complète.
+    #Joue une partie complète.
 
-    Renvoie le joueur gagnant, ou None en cas de match nul.
-    `afficher=False` permet d'enchaîner des parties IA sans rien imprimer.
-    """
+   
     grille = Grille()
     # Chaque entrée associe un joueur à son symbole ; X commence.
     tours = [(joueur_x, "X"), (joueur_o, "O")]
@@ -60,7 +49,7 @@ def jouer_partie(joueur_x, joueur_o, afficher=True):
 
 
 def choisir_joueurs():
-    """Menu de départ : renvoie (joueur_x, joueur_o) selon le mode choisi."""
+    #Menu de départ : renvoie (joueur_x, joueur_o) selon le mode choisi.
     print("1. Humain contre IA")
     print("2. Humain contre humain")
     print("3. IA contre IA")
@@ -107,7 +96,7 @@ def main():
 
 
 def tester():
-    """Jeu d'essai de l'énoncé."""
+    #Jeu d'essai de l'énoncé.
     # IA contre IA, 20 parties : victoire ou nul à chaque fois, jamais de blocage.
     ia1, ia2 = JoueurIA("IA 1"), JoueurIA("IA 2")
     resultats = {"IA 1": 0, "IA 2": 0, "Nuls": 0}
