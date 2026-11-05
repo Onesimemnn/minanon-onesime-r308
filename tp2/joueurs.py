@@ -1,27 +1,16 @@
-"""
-TP2 - Partie B : classes Joueur.
-
-Toutes les classes de joueurs ont la même méthode :
-    prochain_coup(tab, symbole) -> (x, y)
-où tab est la grille sous forme de liste de listes (Grille.cases).
-
-La boucle de jeu (Partie C) appelle prochain_coup() sans savoir si le joueur
-est un humain ou une IA : c'est le polymorphisme.
-"""
-
 import random
 
 from grille import TAILLE, VIDE, Grille
 
 
 def cases_libres(tab):
-    """Liste des coordonnées (x, y) des cases vides de tab."""
+    #Liste des coordonnées (x, y) des cases vides de tab.
     return [(x, y) for x in range(TAILLE) for y in range(TAILLE)
             if tab[x][y] == VIDE]
 
 
 class Joueur:
-    """Classe de base : définit ce que tout joueur doit savoir faire."""
+    #Classe de base : définit ce que tout joueur doit savoir faire.
 
     def __init__(self, nom):
         self.nom = nom
@@ -35,7 +24,7 @@ class Joueur:
 
 
 class JoueurHumain(Joueur):
-    """Joueur qui saisit son coup au clavier."""
+    #Joueur qui saisit son coup au clavier.
 
     def __init__(self, nom, lire=input):
         super().__init__(nom)
@@ -43,12 +32,7 @@ class JoueurHumain(Joueur):
         self.lire = lire
 
     def prochain_coup(self, tab, symbole):
-        """Demande « ligne colonne » jusqu'à obtenir deux nombres entiers.
-
-        On ne vérifie ici que le FORMAT de la saisie. Savoir si la case est
-        libre ou dans la grille, c'est le rôle de Grille.jouer() : la boucle
-        de jeu affichera le message et redemandera.
-        """
+        #Demande « ligne colonne » jusqu'à obtenir deux nombres entiers.
         while True:
             saisie = self.lire(f"{self.nom} ({symbole}), ligne et colonne (ex : 0 2) : ")
             # On accepte « 0 2 », « 0,2 » ou « 0;2 ».
@@ -62,7 +46,7 @@ class JoueurHumain(Joueur):
 
 
 class JoueurIA(Joueur):
-    """Joueur qui choisit une case libre au hasard."""
+    #Joueur qui choisit une case libre au hasard.
 
     def prochain_coup(self, tab, symbole):
         libres = cases_libres(tab)
@@ -72,7 +56,7 @@ class JoueurIA(Joueur):
 
 
 class JoueurIAMalin(JoueurIA):
-    """IA bonus : gagne si elle peut, sinon bloque l'adversaire, sinon hasard."""
+    #IA bonus : gagne si elle peut, sinon bloque l'adversaire, sinon hasard.
 
     def prochain_coup(self, tab, symbole):
         adversaire = "O" if symbole == "X" else "X"
@@ -89,11 +73,8 @@ class JoueurIAMalin(JoueurIA):
 
     @staticmethod
     def coup_gagnant(tab, symbole):
-        """Renvoie une case qui ferait gagner `symbole`, ou None s'il n'y en a pas.
+        #Renvoie une case qui ferait gagner `symbole`, ou None s'il n'y en a pas.
 
-        On simule chaque coup sur une COPIE de la grille, pour ne jamais
-        modifier le tableau de la vraie partie, et on réutilise est_gagnant().
-        """
         copie = Grille()
         copie.cases = [ligne[:] for ligne in tab]  # ligne[:] copie chaque ligne
         for x, y in cases_libres(tab):
@@ -105,7 +86,7 @@ class JoueurIAMalin(JoueurIA):
 
 
 def tester():
-    """Vérifie le comportement des deux types de joueurs."""
+    #Vérifie le comportement des deux types de joueurs.
     tab = [["X", "O", VIDE],
            [VIDE, "X", VIDE],
            [VIDE, VIDE, VIDE]]
